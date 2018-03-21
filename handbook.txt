@@ -1,0 +1,19 @@
+Sentiment Analysis hand book.
+
+
+-> Corpora :
+	a collection of written or spoken material in machine-readable form, assembled for the purpose of linguistic research.
+
+-> Annotation : 
+	Any metadata tag used to mark up elements of the dataset is called an annotation over the input.
+
+-> Datasets of natural language are referred to as corpora, and a single set of data annotated with the same specification is called an annotated corpus.
+
+subjective classification(imple_paper_bootstrapping-page-3) :->
+	The high-precision subjective classifier classifies a sentence as subjective if it contains two or more of the strongly subjective 		clues. On a manually annotated test set, this classifier achieves 91.5% precision and 31.9% recall (that is, 91.5% of the sentences 		that it selected are subjective, and it found 31.9% of the subjective sentences in the test set). This test set consists of 2197 		sentences, 59% of which are subjective.
+
+objective classification(imple_paper_bootstrapping-page-3) :->	
+	The high-precision objective classifier takes a different approach. Rather than looking for the presence of lexical items, it looks 		for their absence. It classifies a sentence as objective if there are no strongly subjective clues and at most one weakly subjective 		clue in the current, previous, and next sentence combined. The performance of the high-precision objective classifier is a bit lower 		than the subjective classifier: 82.6% precision and 16.4% recall.
+
+Q.) Why doesn’t the objective classifier mirror the subjective classifier, and consult its own list of strongly objective clues?
+A.) There are certainly lexical items that are statistically correlated with the objective class (examples are cardinal numbers              	 (Wiebe etal., 1999), and words such as per, case, market, and total), but the presence of such clues does not readily lead to high 	    	precision objective classification. Add sarcasm or a negative evaluation to a sentence about a dry topic such as stock prices, and      	the sentence becomes subjective. Conversely, add objective topics to a sentence containing two strongly subjective words such as odious 	and scumbag, and the sentence remains subjective.

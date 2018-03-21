@@ -1,0 +1,11 @@
+title/topic,Name, roll no, guided by, date 
+introduction
+literature survey 
+problem definition
+motivation
+proposed system/algorithm
+future scope
+conclusion
+References
+thank you
+Slide number****
