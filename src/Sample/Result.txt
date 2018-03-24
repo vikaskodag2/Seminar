@@ -1,0 +1,12 @@
+Done analyzing. Compiling results!!!
+
+Sentiment analysis on unannotated data from sample results  : 
+positive words : 199
+negative words : 205
+neutral words : 16
+
+
+sample manually annotated results :
+positive words : 152
+negative words : 202
+neutral words : 66

@@ -1,16 +1,3 @@
-####################################################################
-# Licence:    Creative Commons (see COPYRIGHT)                     #
-# Authors:    Nikolaos Pappas, Georgios Katsimpras                 #
-#             {nik0spapp, gkatsimpras}@gmail.com                   # 
-# Supervisor: Efstathios stamatatos                                #
-#             stamatatos@aegean.gr                                 #
-# University of the Aegean                                         #
-# Department of Information and Communication Systems Engineering  #
-# Information Management Track (MSc)                               #
-# Karlovasi, Samos                                                 #
-# Greece                                                           #
-####################################################################
-
 import sys
 import nltk
 from lexicon import Lexicon    
@@ -18,6 +5,9 @@ from lexicon import Lexicon
 from porter2stemmer import Porter2Stemmer
 stemmer = Porter2Stemmer()
 #stem() is used to get the root word.
+
+DEBUG1 = True
+
 
 class HpSubj:
     """
@@ -97,5 +87,5 @@ class HpObj:
 if __name__ == '__main__': 
     hpo = HpObj()
     hps = HpSubj()
-    print "Objective: " + (str)(hpo.classify(sys.argv[1]))
-    print "Subjective: " + (str)(hps.classify(sys.argv[1]))
+    if DEBUG1: print "Objective: " + (str)(hpo.classify(sys.argv[1]))
+    if DEBUG1: print "Subjective: " + (str)(hps.classify(sys.argv[1]))

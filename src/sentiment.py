@@ -1,16 +1,3 @@
-####################################################################
-# Licence:    Creative Commons (see COPYRIGHT)                     #
-# Authors:    Nikolaos Pappas, Georgios Katsimpras                 #
-#             {nik0spapp, gkatsimpras}@gmail.com                   # 
-# Supervisor: Efstathios stamatatos                                #
-#             stamatatos@aegean.gr                                 #
-# University of the Aegean                                         #
-# Department of Information and Communication Systems Engineering  #
-# Information Management Track (MSc)                               #
-# Karlovasi, Samos                                                 #
-# Greece                                                           #
-####################################################################
-
 import os
 import sys
 import nltk
@@ -23,6 +10,7 @@ from replacer import RepeatReplacer
 from terminal_colors import Tcolors
 
 DEBUG = False
+DEBUG1 = True
 
 class Sentiment:
     """
@@ -65,11 +53,11 @@ class Sentiment:
                 results = {'positive':{'count' : 0, 'score' : 0, 'nscore' : 0},
                            'neutral':{'count' : 0, 'score' : 0, 'nscore' : 0},
                            'negative':{'count' : 0, 'score' : 0, 'nscore' : 0}}
-                
-                print
-                print Tcolors.ACT + " Checking block of text:"
-                for i, sentence in enumerate(sentences):
-                    print "[" + str(i+1) + "] " + sentence
+                if DEBUG1 :
+                    print
+                    print Tcolors.ACT + " Checking block of text:"
+                    for i, sentence in enumerate(sentences):
+                        print "[" + str(i+1) + "] " + sentence
                 for i, sentence in enumerate(sentences):
                     # Proceed to subjectivity classification (bootstrapping procedure).
                     # (This step could be skipped in case you deal with subjective sentences only.)
@@ -85,23 +73,23 @@ class Sentiment:
                             next = sentences[i+1]
                         previous = sentences[i-1] 
                      
-                    if DEBUG: print Tcolors.ACT + " Analyzing subjectivity..." 
+                    if DEBUG1: print Tcolors.ACT + " Analyzing subjectivity..." 
                     result = self.bootstrapping.classify(sentence, previous, next) 
                     if result is None:
                         res = 'Not found!'
                     else:
                         res = result
-                    if DEBUG:
+                    if DEBUG1:
                         print Tcolors.RES + Tcolors.OKGREEN + " " + res + Tcolors.ENDC
                         print
                     
                     # If sentence is subjective 
                     if result == 'subjective' or result is None:
                         # Proceed to polarity classification
-                        if DEBUG: print Tcolors.ACT + " Analyzing sentiment..."
+                        if DEBUG1: print Tcolors.ACT + " Analyzing sentiment..."
                         polarity_classifier = PolarityClassifier(self.pos_tagger, self.lexicon, debug=DEBUG)
                         sentiment, score, nscore = polarity_classifier.classify(sentence)
-                        if DEBUG: print Tcolors.RES + Tcolors.OKGREEN + " " + sentiment + Tcolors.ENDC
+                        if DEBUG1: print Tcolors.RES + Tcolors.OKGREEN + " " + sentiment + Tcolors.ENDC
                     # If sentence is objective
                     elif result == 'objective':
                         sentiment = 'neutral'  
@@ -123,30 +111,33 @@ class Sentiment:
                         results[sentiment]['nscore'] += nscore
                         results[sentiment]['score'] += score
                         results[sentiment]['count'] += 1 
-                          
-                print       
-                print Tcolors.ACT + " Overall sentiment analysis:"
-                print Tcolors.BGH
-                print " Parts: ", len(sentences)
-                print " Sentiments: ", sentiments
-                print " Scores: ", scores 
-                print " Results: ", "},\n\t    ".join((str)(results).split("}, "))
-                print Tcolors.C
+                
+                if DEBUG1 :
+
+                    print       
+                    print Tcolors.ACT + " Overall sentiment analysis:"
+                    print Tcolors.BGH
+                    print " Parts: ", len(sentences)
+                    print " Sentiments: ", sentiments
+                    print " Scores: ", scores 
+                    print " Results: ", "},\n\t    ".join((str)(results).split("}, "))
+                    print Tcolors.C
 
                 pcount = results['positive']['count']
                 ncount = results['negative']['count'] 
                 total = len(sentences)
-                print Tcolors.BG
-                print " subjective".ljust(16,"-") + "> %.2f" % ((float)(pcount + ncount)*100 / total) + "%"
-                print " objective".ljust(16,"-") + "> %.2f" % (100 - ((float)(pcount + ncount)*100 / total)) + "%"
-                print Tcolors.C
-                print Tcolors.BGGRAY
-                for sense in results.keys():
-                    count = results[sense]['count']
-                    percentage = (float)(count) * 100 / (len(sentences))
-                    print " " +sense.ljust(15,"-")+"> %.2f" % (percentage) + "%"
+                if DEBUG1 :
+                    print Tcolors.BG
+                    print " subjective".ljust(16,"-") + "> %.2f" % ((float)(pcount + ncount)*100 / total) + "%"
+                    print " objective".ljust(16,"-") + "> %.2f" % (100 - ((float)(pcount + ncount)*100 / total)) + "%"
+                    print Tcolors.C
+                    print Tcolors.BGGRAY
+                    for sense in results.keys():
+                        count = results[sense]['count']
+                        percentage = (float)(count) * 100 / (len(sentences))
+                        print " " +sense.ljust(15,"-")+"> %.2f" % (percentage) + "%"
                   
-                print Tcolors.C 
+                if DEBUG1 : print Tcolors.C 
                 ssum = sum(scores)
                 confidence = " (%.2f, %.2f)" % (ssum,sum(nscores))
                 final_sent = ""
@@ -164,7 +155,7 @@ class Sentiment:
                 else:
                     print Tcolors.RES + Tcolors.OKGREEN +  " negative" + confidence + Tcolors.C
                     final_sent = "negative"
-                print Tcolors.C
+                if DEBUG1 : print Tcolors.C
                 
                 # Store results
                 total_result_hash = {'sentences' : sentences,

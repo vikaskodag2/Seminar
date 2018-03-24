@@ -1,21 +1,10 @@
-####################################################################
-# Licence:    Creative Commons (see COPYRIGHT)                     #
-# Authors:    Nikolaos Pappas, Georgios Katsimpras                 #
-#             {nik0spapp, gkatsimpras}@gmail.com                   # 
-# Supervisor: Efstathios stamatatos                                #
-#             stamatatos@aegean.gr                                 #
-# University of the Aegean                                         #
-# Department of Information and Communication Systems Engineering  #
-# Information Management Track (MSc)                               #
-# Karlovasi, Samos                                                 #
-# Greece                                                           #
-####################################################################
-
 import re
 import sys  
 import pickle 
 from terminal_colors import Tcolors
 from pb_classifiers import PbSubj
+
+DEBUG1 = True
 
 class Bootstrapping:
     """
@@ -60,9 +49,9 @@ class Bootstrapping:
         self.filename = "stored/learned_patterns"
         try:
             self.learned_patterns = pickle.load(open(self.filename))
-            print Tcolors.ADD + Tcolors.OKBLUE + " Loaded existing pattern knowledge!" + Tcolors.ENDC 
+            if DEBUG1: print Tcolors.ADD + Tcolors.OKBLUE + " Loaded existing pattern knowledge!" + Tcolors.ENDC 
         except:
-            print Tcolors.ACT + Tcolors.RED + " Existing pattern knowledge not found." + Tcolors.ENDC
+            if DEBUG1: print Tcolors.ACT + Tcolors.RED + " Existing pattern knowledge not found." + Tcolors.ENDC
             self.learned_patterns = {}
              
         # Part Of Speech Sequential Tagger (Unigram->Bigram->Trigram) 
@@ -299,5 +288,3 @@ if __name__ == "__main__":
     bootstrapping = Bootstrapping(hp_obj, hp_subj, tagger)
     if self.debug:
         print bootstrapping.classify(sys.argv[1])
-        
-        

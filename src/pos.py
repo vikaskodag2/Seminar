@@ -1,21 +1,10 @@
-####################################################################
-# Licence:    Creative Commons (see COPYRIGHT)                     #
-# Authors:    Nikolaos Pappas, Georgios Katsimpras                 #
-#             {nik0spapp, gkatsimpras}@gmail.com                   # 
-# Supervisor: Efstathios stamatatos                                #
-#             stamatatos@aegean.gr                                 #
-# University of the Aegean                                         #
-# Department of Information and Communication Systems Engineering  #
-# Information Management Track (MSc)                               #
-# Karlovasi, Samos                                                 #
-# Greece                                                           #
-####################################################################
-
 import os
 import sys
 import pickle
 import nltk.corpus, nltk.tag, itertools  
 from terminal_colors import Tcolors
+
+DEBUG1 = True
 
 class SequentialTagger:
     """
@@ -31,11 +20,11 @@ class SequentialTagger:
         self.filename = "stored/ubt_tagger.classifier"
         try: 
             self.ubt_tagger = pickle.load(open(self.filename)) 
-            print Tcolors.ADD + Tcolors.OKBLUE + " Loaded existing UBT tagger!" + Tcolors.ENDC 
+            if DEBUG1: print Tcolors.ADD + Tcolors.OKBLUE + " Loaded existing UBT tagger!" + Tcolors.ENDC 
         except:
-            print Tcolors.ACT + Tcolors.RED + " Existing UBT tagger not found." + Tcolors.ENDC
-            print "Path:",  "stored/ubt_tagger.classifier"
-            print "Training..."
+            if DEBUG1: print Tcolors.ACT + Tcolors.RED + " Existing UBT tagger not found." + Tcolors.ENDC
+            if DEBUG1: print "Path:",  "stored/ubt_tagger.classifier"
+            if DEBUG1: print "Training..."
             brown_review_all = nltk.corpus.brown.tagged_sents()
             brown_review_sents = nltk.corpus.brown.tagged_sents(categories=['reviews'])
             brown_lore_sents = nltk.corpus.brown.tagged_sents(categories=['lore'])

@@ -1,16 +1,3 @@
-####################################################################
-# Licence:    Creative Commons (see COPYRIGHT)                     #
-# Authors:    Nikolaos Pappas, Georgios Katsimpras                 #
-#             {nik0spapp, gkatsimpras}@gmail.com                   # 
-# Supervisor: Efstathios stamatatos                                #
-#             stamatatos@aegean.gr                                 #
-# University of the Aegean                                         #
-# Department of Information and Communication Systems Engineering  #
-# Information Management Track (MSc)                               #
-# Karlovasi, Samos                                                 #
-# Greece                                                           #
-####################################################################
-
 from __future__ import division
 import nltk
 import string
@@ -58,8 +45,8 @@ class PolarityClassifier:
         """
         score = 0
         for token in self.stokens:
-            if self.lexicon.has_key(token) \
-               and self.lexicon[token].has_key('emoticon'):
+            if token in self.lexicon \
+               and 'emoticon' in self.lexicon[token]:
                if self.lexicon[token]['priorpolarity'] == "negative":
                     score = -2
                else:
@@ -144,12 +131,12 @@ class PolarityClassifier:
             word = word.lower()
             if word in self.lexicon:
                 if self.lexicon[word]['priorpolarity'] == "positive":
-                    if not self.feature_words.has_key(word):                        
+                    if not word in self.feature_words:                        
                         self.feature_words[word] = 1
                     else:
                         self.feature_words[word] += 1
                 elif self.lexicon[word]['priorpolarity'] == "negative":
-                    if not self.feature_words.has_key(word):                        
+                    if not word in self.feature_words:                        
                         self.feature_words[word] = -1
                     else:
                         self.feature_words[word] -= 1
@@ -160,7 +147,7 @@ class PolarityClassifier:
         if self.words.index(polar) > 0:
             previous_word = self.words[self.words.index(polar) - 1]
             
-            if self.lexicon.has_key(previous_word) and self.lexicon[previous_word]["type"]=="strongsubj" \
+            if previous_word in self.lexicon and self.lexicon[previous_word]["type"]=="strongsubj" \
                and 'adj' in self.lexicon[previous_word]["pos1"]:
                 return True
         return False
@@ -251,7 +238,7 @@ class PolarityClassifier:
             word = word.lower()
             words = [word, stemmer.stem(word)]
             for w in words: 
-                if self.feature_words.has_key(w) and (matched_tag in self.lexicon[w]["pos1"] \
+                if w in self.feature_words and (matched_tag in self.lexicon[w]["pos1"] \
                                                          or self.lexicon[w]["pos1"][0] == "anypos" \
                                                          or matched_tag == "anypos"): 
                     self.polar_expressions.append(w)
