@@ -4,7 +4,7 @@ Sentiment analysis (also referred as opinion mining) is the study of affective s
 
 	For opinion mining or sentiment analysis some methods are applied like – Naive Bayes Machine Learning Classifier, Senti Word Net, Support Vector Machine.Here we have used Lexicon based approach of Sentiment Analysis.Sentiment lexicon is used in the lexicon based approach. Sentiment lexicon is a collection of known and defined words. A specific sentiment is assigned to each word in the collection. The lexicon based approach is divided into dictionary based approach and corpus based approach[->gg<-].
 
-	Sentiment analysis task is divided into three categories; Aspect level, Sentence level, Document level [3]. It is shown in Fig. 1. Aspect level analysis deal with the aspects of items. It can also be considered as phrase level analysis. In Sentence level, each sentence is considered as an entity. Summation method is used to provide overall result of the document. In document level, the whole document is
+	Sentiment analysis task is divided into three categories; Aspect level, Sentence level, Document level [3]. Aspect level analysis deal with the aspects of items. It can also be considered as phrase level analysis. In Sentence level, each sentence is considered as an entity. Summation method is used to provide overall result of the document. In document level, the whole document is
 considered as a single entity.
 
 
@@ -14,12 +14,10 @@ considered as a single entity.
 
 	 A recent study [->1**1<-] aimed to create a system that would assist users in understanding tourism opinions on the web by finding and extracting subjective information from reviews in tourism websites. Aspect extraction was performed with the use of frequent nouns and the opinion was determined. 
 
-	Estela Marine-Roig et al. [->5555<-] addressed the problem of finding out the frequently occurring trends of different tourist places from tourist opinions. The authors proposed a trends extraction framework that consisted of five phases i.e. semiautomatic downloading, arranging, cleaning, debugging, and analyzing. Trends extraction framework is better than previous method Liu (2011) in trends extraction because two extra phases of cleaning and debugging has been added up to eliminate the noise present in the tourist's opinions. The
-limitations of the work are that i. Method does not classify the derived frequent trends into positive and negative trends ii. method extracts same trend in one opinion sentence multiple times that create the reputation of trends iii. Method extracts many irrelevant and meaningless trends during classification. 
+	Estela Marine-Roig et al. [->5555<-] addressed the problem of finding out the frequently occurring trends of different tourist places from tourist opinions. The authors proposed a trends extraction framework that consisted of five phases i.e. semiautomatic downloading, arranging, cleaning, debugging, and analyzing. Trends extraction framework is better than previous method Liu (2011) in trends extraction because two extra phases of cleaning and debugging has been added up to eliminate the noise present in the tourist's opinions. The limitations of the work are that i. Method does not classify the derived frequent trends into positive and negative trends ii. method extracts same trend in one opinion sentence multiple times that create the reputation of trends iii. Method extracts many irrelevant and meaningless trends during classification. 
 
 
-	In another way to enhance the performance of opinion sentences extraction Shimada, K.. [->12**<-] used support vector machine for sentences classification. The authors addressed the problem to identify whether tweet on-site are more likelihood or tweet off-site. The authors proposed a method to evaluate on-site likelihood. Firstly, this method takes tweets and identifies tourism related tweets. Secondly, extracts tourism related tweets and deletes the remaining ones. Lastly classifies the extracted tweets on the basis of different features
-of tourist places using SVM. The finding of this paper is that classification has improved by applying the method of on-site likelihood filtering method. The same fact is shown in the results i.e. without applying this filtering method Recall=58.2% and Precision=75.0% and after applying the filtering method Recall=65.0% and Precision=80.5%. If there is a location name at the start of any tweet then it is high onsite likelihood tweet. The limitations of the work are that i. mostly the comments of authors on tweets are more than any
+	In another way to enhance the performance of opinion sentences extraction Shimada, K.. [->12**<-] used support vector machine for sentences classification. The authors addressed the problem to identify whether tweet on-site are more likelihood or tweet off-site. The authors proposed a method to evaluate on-site likelihood. Firstly, this method takes tweets and identifies tourism related tweets. Secondly, extracts tourism related tweets and deletes the remaining ones. Lastly classifies the extracted tweets on the basis of different features of tourist places using SVM. The finding of this paper is that classification has improved by applying the method of on-site likelihood filtering method. The same fact is shown in the results i.e. without applying this filtering method Recall=58.2% and Precision = 75.0% and after applying the filtering method Recall=65.0% and Precision=80.5%. If there is a location name at the start of any tweet then it is high onsite likelihood tweet. The limitations of the work are that i. mostly the comments of authors on tweets are more than any
 other person which are mostly positive or negative that create nose in sentiment analysis ii. method extracts some sentences in which no opinion about targeted tourist place is given that creates noise during classification of reviews. 
 
 
@@ -41,44 +39,81 @@ This sentence has a negative sentiment. In recent time many researchers are work
 
 	In this section, details of data gathered in our study is provided. For this purpose, Twitter APIs were used to gather publicly available Twitter data which is commonly used for research in social opinion mining and sentiment analysis. First we selected twitter profile of Ministry Of India, which has 5589 tweeets and 85.9K followers(as of March, 2018). The data was then acquired for period of a year which constituted several thousands of tweets in english. The long duration of data capturing enables us to achieve the desired richness in our corpus.
 
-	There are numerous issues with Twitter data due to the fact that people use short hands, misspell words, and often join two words by mistake. Social media users do not usually post content by following proper language rules. The sources in the study had content following proper language rules.
+	There are numerous issues with Twitter data due to the fact that people use short hands, misspell words, and often join two words by mistake. Social media users do not usually post content by following proper language rules. The sources in the study had content in standard language. The acquired was then cleaned. The auto generated tweets pointing to some tweet was removed. Next was a tweet that is a question statement in nature. Sentiment classification of such statements is quite difficult. In our work, these tweets are dealt as general tweets and are labeled according to the sentiment polarity score. 
+
+
+							Methodology :->
+
+	In this section, we present our methodology of sentiment of analysis our Twitter data. The high-precision subjectivity classifiers was used to automatically identify subjective and objective sentences in unannotated texts. The high-precision classifiers label a sentence as subjective or objective when they are confident about the classification, and they leave a sentence unlabeled otherwise. This allowed us to generate large set of labelled sentences. Using the labeled sentences as training data, we apply an extraction pattern learning algorithm to generate patterns representing subjective expressions.These patterns are linguistically richer and more flexible than single words or N-grams.
+	
+	For example, consider the common expression drives (someone) up the wall, which expresses the feeling of being annoyed with some-
+thing. The meaning of this expression is quite different from the meanings of its individual words (drives, up, wall). Furthermore, this expression is not a fixed word sequence that could easily be captured by N-grams. It is a relatively flexible construction that may be more generally represented as x drives y up the wall, where x and y may be arbitrary noun phrases. This pattern would match many different sentences, such as “George drives me up the wall.”.
+
+	The high-precision classifiers (HP-Subj and HP-Obj) use lists of lexical items. Many of the subjective clues are from manually developed resources. The subjectivity clues are divided into those that are strongly subjective and those that are weakly subjective,
+using a combination of manual review and empirical results on a small training set of manually annotated data. As the terms are used here, a strongly subjective clue is one that is seldom used without a subjective meaning, whereas a weakly subjective clue is one that commonly
+has both subjective and objective uses.
+
+	Polarity classification was done with a two step process. The first step classifies each phrase containing a clue as neutral or polar. The second step is a three-way classification task, determining whether the contextual polarity is positive, negative or both. However, although the majority of neutral expressions have been filtered out by the neutral-polar classification in step one, a number
+still remain. So, for this step, the polarity classification task remains four-way: positive, negative, both, and neutral. 
+
+
+							Processing pipeline :->
+
+	The current pipline that is implemented in sentiment.py is depicted in the following diagram. Initially, the input text is split into sentences and each sentence is fed to a high precision subjectivity classifier. If the sentence is classified as subjective then syntactic patterns are learned from this instance. In case that the sentence is not detected as such then it is fed to the pattern-based classifier. The pattern-based classifier outputs the class of the sentence based on the learned patterns so far. If the instance is subjective then again more patterns are learned from it, otherwise it is fed to a high precision objectivity classifier. If the sentence is classified as objective, then it is ignored, otherwise it is fed to the polarity classifier. Finally, the polarity classifier estimates the numerical sentiment and normalized sentiment values and outputs the result.
+
+
+							Results :->
+
+	The effectiveness of the system was tested using random statements. The results of aspect-based sentiment analysis were presented in the form of bar chart. The statements were manually annotated and the results of sentence classification was matched with manual classification. The polarity of the statements is given in the form of table in TABLE 1. There were 152 positive statements, 202 negative statements and 66 neutral statements. The analysis of the system is shown in TABLE 2. According to the system there were 199 positive statements, 205 negative statements and 16 neutral statements.
+Table 1
+positive words : 152
+negative words : 202
+neutral words : 66
+Table 2
+positive words : 199
+negative words : 205
+neutral words : 16
+
+
+	Examples of the statements is given as follows.
+S1 :-> I'm living in Japan, which consistently appears at the better end of the scale.
+manual result ---> p
+system result ---> positive (4.00, 0.27)
+
+S2 :-> I do not mean to demean anyone.
+manual result ---> n
+system result ---> positive (4.00, 0.57)
+
+S3 :-> Guess you're not ready for a public debate.
+manual result ---> n
+system result ---> negative (-2.00, -0.22)
+
+
+							Conclusion :->
+
+	In this paper, tweets from twitter account of Ministry of Tourism(India) was studied. The lexicon-based approach was used to to build an extensive sentiment lexicon. The high prescision subjectivity classifiers and polarity classifiers were used to generate the results. The overall accuracy that system was able to achieve was 63%. The system showed higher accuracy in classifying negative sentiments which was dropped while classifying positive sentiments. 
+	As a future work, we have identified multiple works that can be carried out. Firstly, fine-grained level methods can be adopted to identify whether there is a polarity towards search term or not. Secondly, WSD methods can be implemented to increase the correctness of SentiWordNet analysis since WSD handles identification of word context problem. Thirdly, sarcasm detection can be applied as addressed in experiments and results section to improve the accuracy of results. Lastly, machine learning methods may be applied to understand the
+accuracy of them with respect to lexicon-based methods.
 
 
 
+							Refrences :->
 
-Refrences :->
+[process**1] Kim, S.-B., & Kim, D.-Y. (2011). Travel information search behavior and social networking sites: The case of US college students. Retrieved from http://scholarworks.umass.edu/gradconf_hospitality/2011/Presentation/80/
 
-[1**1] Kim, S.-B., & Kim, D.-Y. (2011). Travel information search behavior
-and social networking sites: The case of US college students.
-Retrieved from http://scholarworks.umass.edu/gradconf_hospitality/2011/Presentation/80/
+[5555] Colhon, M, Badica, C, & Sendre, A (2014). Relating the Opinion Holder and the Review Accuracy in Sentiment Analysis of Tourist
+Reviews. In Knowledge Science, Engineering and Management (pp.246-257). Springer International Publishing.
 
-[5555] Colhon, M, Badica, C, & Sendre, A (2014). Relating the Opinion
-Holder and the Review Accuracy in Sentiment Analysis of Tourist
-Reviews. In Knowledge Science, Engineering and Management (pp.
-246-257). Springer International Publishing.
+[12**] Shimada, K., Inoue, S., & Endo, T (2012, September). On-site likelihood identification of tweets for tourism infonnation analysis. In
+Advanced Applied lnfonnatics (11A1AA1), 2012 IIAl International Conference on (pp. 117-122). IEEE.  
 
-[12**] Shimada, K., Inoue, S., & Endo, T (2012, September). On-site
-likel ihood identification of tweets for tourism infonnation analysis. In
-Advanced Applied lnfonnatics (11A1AA1), 2012 IIAl International
-Conference on (pp. 117-122). IEEE.  
-
-[1] -> D. Jurafsky, “Speech and language processing: An introduction to
-natural language processing,” Computational linguistics, and speech
+[1] -> D. Jurafsky, “Speech and language processing: An introduction to natural language processing,” Computational linguistics, and speech
 recognition, 2000.
 
-[1gg1] A. El-Halees, “Mining opinions in user- generated contents to improve
-course evaluation,” Software Engineering and Computer Systems, pp. 107-
-115, 2011.
+[1gg1] A. El-Halees, “Mining opinions in user- generated contents to improve course evaluation,” Software Engineering and Computer Systems, pp. 107-115, 2011.
 
-[gg] -> W. Medhat, A. Hassan and H. Korashy, “Sentiment analysis algorithms
-and applications: A survey,” Elsevier, Ain Shams Engineering Journal,
-vol. 5, Issue 4, pp. 1093-1113, December 2014.
+[gg] -> W. Medhat, A. Hassan and H. Korashy, “Sentiment analysis algorithms and applications: A survey,” Elsevier, Ain Shams Engineering Journal, vol. 5, Issue 4, pp. 1093-1113, December 2014.
 
-[->3<-] R. Xia, F. Xu, C. Zong, Q. Li, Y. Qi, and T. Li, “Dual Sentiment
-Analysis: Considering Two Sides of One Review,” IEEE Transactions on
-Knowledge and Data Engineering, vol. 27, Issue 8, pp. 2120-2133,
-August 2015.
+[->3<-] R. Xia, F. Xu, C. Zong, Q. Li, Y. Qi, and T. Li, “Dual Sentiment Analysis: Considering Two Sides of One Review,” IEEE Transactions on Knowledge and Data Engineering, vol. 27, Issue 8, pp. 2120-2133, August 2015.
 
-[->5<-] Nitin Jindal and Bing Liu “Mining Comparative Sentences and
-Relations” (2006), AAAI'06 proceedings of the 21st national
-conference on Artificial intelligence - Volume 2, pp.1331-1336.
+[->5<-] Nitin Jindal and Bing Liu “Mining Comparative Sentences and Relations” (2006), AAAI'06 proceedings of the 21st national conference on Artificial intelligence - Volume 2, pp.1331-1336.
