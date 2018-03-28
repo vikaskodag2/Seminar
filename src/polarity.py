@@ -118,8 +118,11 @@ class PolarityClassifier:
             print Tcolors.ADD + " NORMALIZED CONFIDENCE: ", score/len(self.words)
         
         self.words = [w for w in self.words if w != '']
-        return prediction, score, score/len(self.words) #normalizedScore
-      
+        if(len(self.words) > 0):
+            return prediction, score, score/len(self.words) #normalizedScore
+        else :
+            return prediction, score, score
+
     def extract_features(self):
         """
         Match positive and negative words of a sentence with a score of +1 or -1

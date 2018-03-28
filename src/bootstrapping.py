@@ -4,7 +4,7 @@ import pickle
 from terminal_colors import Tcolors
 from pb_classifiers import PbSubj
 
-DEBUG1 = True
+DEBUG1 = False
 
 class Bootstrapping:
     """
@@ -14,11 +14,6 @@ class Bootstrapping:
         (opinionated) expressions from unannotated data. The learned
         patterns are used to identify more subjective sentences that simple 
         high precision classifiers can't recall.
-
-        Related paper:
-        E. Riloff and J. Wiebe. Learning extraction patterns for subjective 
-        expressions. In Proceedings of the 2003 conference on Empirical methods 
-        in natural language processing, EMNLP '03, pages 105--112, 2003. ACL.
         
         Learned patterns structure
         e.g. {"<subj> was killed" : {'type' : 'subj',

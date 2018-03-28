@@ -1,0 +1,48 @@
+Introduction :->
+
+Sentiment analysis (also referred as opinion mining) is the study of affective states and subjective information in the customer data such as reviews and survey responses, online and social media) by using natural language processing and data mining techniques [1]. Sentiment analysis aims to determine the attitude of a subject with respect to some topic or the overall contextual polarity or emotional reaction to some object, such as a document, interaction, or event. The attitude may be a judgment or evaluation, affective state, or the intended emotional communication. Sentiment analysis is widely used in many applications that range from marketing to customer service to clinical medicine.
+
+Sentiment analysis of Twitter has attracted a lot of attention, since the first day Twitter was launched. Both the academic world and business world spent considerable amounts of time to generate effective solutions to understand the opinions of Twitter users. Competitions were organized, various tools were built, and numerous articles were published. Several companies, such as Twitratr 1 , Tweetfeel 2 , and Social Mention 3 offer sentiment analysis as one of their services. Most of the existing applications work on huge amounts of tweets. Similarly, in academic studies, experiments are conducted on the extensive number of tweets. The use of large datasets has become crucial especially for supervised-learning based approaches. However, the use of larger datasets does not always produce meaningful results especially by virtue of Twitter nature. We know that Twitter users do not always express their feeling by tweeting, and at that point, re-tweeting comes into play. Users retweet tweets they liked. The retweeting mechanism makes tweets more popular according to number of retweets. An unpopular tweet and a popular tweet may get the same sentiment score, however, it is clear that their weights should be different. A popular tweet expresses the feeling of more users, while an unpopular tweet may express the feeling of just one user. In this article, we present our lexicon-based sentiment analysis experiments on Twitter. 
+
+
+
+Literature Review :->
+
+A small number of studies have focused on applying machine learning techniques in the tourism sector. A recent study [11] aimed to create a system that would assist users in understanding tourism opinions on the web by finding and extracting subjective information from reviews in tourism websites. Aspect extraction was performed with the use of frequent nouns and the opinion was determined. Leaning closer to sentiment analysis, several researchers developed a system [14] that would assist tourists’ decision-making by classifying comments in various travel websites with aspect classification and polarity identification, achieving an 85% accuracy. Another system [21] used DBPedia, GATE and SentiWordNet to automatically generate recommendations for trip planning.
+
+An even smaller number of studies involving tourism have used Twitter data. In another study, Shimada et al. [17] found a way to measure tourism information likelihood on Twitter using SVM and ten features, including: bag of words, number of nouns and RT (retweet). Another earlier research [16] used seed words to determine the polarity of tweets with Naïve Bayes.
+
+Another similar study by Claster et al. [5] used a keyword-based binary-choice algorithm with the Naïve Bayes algorithm to monitor sentiment of tweets over time regarding unrest in Thailand. They then extended the analysis of tweets to those pertaining to Colombo in Sri Langka and Cancun in Mexico, attaining an accuracy of 41.9%.
+
+Although these studies have ventured into opinion mining with tourism-related tweets, none of them have focused on identifying whether a given tweet was tourism-related or not in the first place. One study [5] gathered tweets with keywords “Bangkok” and “Phukhet”, and in another [16], “basic queries” containing names of facilities and events were used. In both cases, the tweets used as data were already assumed to be pertaining to tourism. On the other hand, the studies [18] that did delve into tweet classification focused on segregating tweets into other general categories. So far, there has not been a comprehensive study involving topic detection and opinion mining techniques in the identification and polarity detection of tourism-related tweets, particularly those from the Philippines.
+
+
+
+
+
+
+
+
+
+
+
+REFERENCES
+
+introduction :
+[1] D. Jurafsky, “Speech and language processing: An introduction to natural language processing,” Computational linguistics, and speech recognition, 2000.
+
+literature reviews :
+[11]Marrese-Taylor, E., Velasquez, J. D., & Bravo-Marquez, F. (2013). Opinion Zoom: A Modular Tool to Explore Tourism Opinions on the Web (pp. 261–264). IEEE. doi:10.1109/WI-IAT.2013.193
+
+[14] Palakvangsa-Na-Ayudhya, S., Sriarunrungreung, V., Thongprasan, P., & Porcharoen, S. (2011). Nebular: A sentiment classification system for the tourism business. In Computer Science and Software Engineering (JCSSE), 2011 Eighth International Joint Conference on (pp. 293–298). IEEE.
+
+[21]Varga, B., & Groza, A. (2011). Integrating DBpedia and SentiWordNet for a tourism recommender system. In Intelligent Computer Communication and Processing (ICCP), 2011 IEEE International Conference on (pp. 133–136). IEEE.
+
+[16] Shimada, K., Inoue, S., Maeda, H., & Endo, T. (2011). Analyzing Tourism Information on Twitter for a Local City (pp. 61–66). IEEE. doi:10.1109/SSNE.2011.27
+
+[17] Shimada, K., Inoue, S., & Endo, T. (2012). On-site Likelihood Identification of Tweets for Tourism Information Analysis (pp. 117–122). IEEE. doi:10.1109/IIAI-AAI.2012.32
+
+[5] Claster, W. B., Cooper, M., & Sallis, P. (2010). Thailand -- Tourism and Conflict: Modeling Sentiment from Twitter Tweets Using Naive Bayes and Unsupervised Artificial Neural Nets(pp. 89–94). IEEE. doi:10.1109/CIMSiM.2010.98
+
+[18] Sriram, B., Fuhry, D., Demir, E., Ferhatosmanoglu, H., & Demirbas, M. (2010). Short text classification in twitter to improve information filtering. In Proceedings of the 33rd international ACM SIGIR conference on Research and development in information retrieval (pp. 841–842). ACM.
+

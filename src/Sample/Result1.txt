@@ -1,0 +1,4 @@
+Sentiment analysis on unannotated data from twitter, results  : 
+positive words : 681
+negtive words : 50
+neutral words : 259
