@@ -4,7 +4,7 @@ import pickle
 from terminal_colors import Tcolors
 from pb_classifiers import PbSubj
 
-DEBUG1 = False
+DEBUG1 = True
 
 class Bootstrapping:
     """

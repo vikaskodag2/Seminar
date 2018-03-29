@@ -6,7 +6,7 @@ from porter2stemmer import Porter2Stemmer
 stemmer = Porter2Stemmer()
 #stem() is used to get the root word.
 
-DEBUG1 = False
+DEBUG1 = True
 
 
 class HpSubj:

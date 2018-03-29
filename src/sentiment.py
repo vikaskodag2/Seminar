@@ -10,7 +10,7 @@ from replacer import RepeatReplacer
 from terminal_colors import Tcolors
 
 DEBUG = False
-DEBUG1 = False
+DEBUG1 = True
 
 class Sentiment:
     """

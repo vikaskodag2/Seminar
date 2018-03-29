@@ -40,9 +40,9 @@ This sentence has a negative sentiment. In recent time many researchers are work
 
 							Dataset :->
 
-	In this section, details of data gathered in our study is provided. For this purpose, Twitter APIs were used to gather publicly available Twitter data which is commonly used for research in social opinion mining and sentiment analysis. First we selected twitter profile of Ministry Of India, which has 5589 tweeets and 85.9K followers(as of March, 2018). The data was then acquired for period of a year which constituted several thousands of tweets in english. The long duration of data capturing enables us to achieve the desired richness in our corpus.
+	In this section, details of data gathered in our study is provided. For this purpose, Twitter APIs were used to gather publicly available Twitter data which is commonly used for research in social opinion mining and sentiment analysis. First we selected twitter profile of GujaratTourism, which has 10k tweeets. The data was then acquired for period of May 26, 2016 to March 20, 2018 which constituted  thousands of tweets in english. The long duration of data capturing enables us to achieve the desired richness in our corpus.
 
-	There are numerous issues with Twitter data due to the fact that people use short hands, misspell words, and often join two words by mistake. Social media users do not usually post content by following proper language rules. The sources in the study had content in standard language. The acquired was then cleaned. The auto generated tweets pointing to some tweet was removed. Next was a tweet that is a question statement in nature. Sentiment classification of such statements is quite difficult. In our work, these tweets are dealt as general tweets and are labeled according to the sentiment polarity score. 
+	There are numerous issues with Twitter data due to the fact that people use short hands, misspell words, and often join two words by mistake. Social media users do not usually post content by following proper language rules. The sources in the study had content in standard language. The mispelled words or the joining of two words were removed using python module called Porter2Stemmer.The acquired was then cleaned. The auto generated tweets pointing to some tweet was removed. Next was a tweet that is a question statement in nature. Sentiment classification of such statements is quite difficult. In our work, these tweets are dealt as general tweets and are labeled according to the sentiment polarity score. 
 
 
 							Methodology :->
@@ -56,6 +56,20 @@ thing. The meaning of this expression is quite different from the meanings of it
 using a combination of manual review and empirical results on a small training set of manually annotated data. As the terms are used here, a strongly subjective clue is one that is seldom used without a subjective meaning, whereas a weakly subjective clue is one that commonly has both subjective and objective uses.
 
 	Polarity classification was done with a two step process. The first step classifies each phrase containing a clue as neutral or polar. The second step is a three-way classification task, determining whether the contextual polarity is positive, negative or both. However, although the majority of neutral expressions have been filtered out by the neutral-polar classification in step one, a number still remain. So, for this step, the polarity classification task remains four-way: positive, negative, both, and neutral. 
+
+
+
+1) N grams- n grams refers to consecutive n terms in text. One can take only one word at a time(unigram) or two words(bigram) up to n accordingly. Some sentiments can’t be captured with unigram feature. For example this drink will knock your socks off. It is a positive comment if socks off is taken together and negative in case of only unigram model (off).
+
+2) POS tagging- It is a way toward denoting a word in a content (corpus) as comparing to parts of speech in light of both its definition and its association with contiguous words. Nouns, pronouns, adjectives, adverbs etc are examples parts of speech. Adjectives and adverbs hold most of the sentiments in text.[11tag1]
+
+3) Stemming-It is the process of removing prefixes and suffixes. For example ‘playing’, ‘played’ can be stemmed to ‘play’. It helps in classification but sometimes leads to decrease in classification accuracy.
+
+4) Stop words- Pronouns (he/she, it), articles (a, the), prepositions (in, near, beside) are stop words. They provide no or little information about sentiments. There is a list of stop words available on the internet. It can be used to remove them in the pre-processing step.
+
+5) Conjunction handling- In general, each sentence expresses only one meaning at a time. But certain conjunction words like but, while, although, however changes the whole meaning of the sentence. For example although movie was good but it was not up to my expectations. By using these rules throughput can be increased by 5%.[6]
+
+6) Negation handling- Negation words like ‘not’ inverts the meaning of whole sentence. For example The movie was not good has ‘good’ in it which is positive but ‘not’ inverts the polarity to negative.
 
 
 							Processing pipeline :->
@@ -92,7 +106,7 @@ system result ---> negative (-2.00, -0.22)
 
 							Conclusion :->
 
-	In this paper, tweets from twitter account of Ministry of Tourism(India) was studied. The lexicon-based approach was used to to build an extensive sentiment lexicon. The high prescision subjectivity classifiers and polarity classifiers were used to generate the results. The overall accuracy that system was able to achieve was 63%. The system showed higher accuracy in classifying negative sentiments which was dropped while classifying positive sentiments. 
+	In this paper, tweets from twitter account of GujaratTourism was studied. The lexicon-based approach was used to to build an extensive sentiment lexicon. The high prescision subjectivity classifiers and polarity classifiers were used to generate the results. The overall accuracy that system was able to achieve was 63%. The system showed higher accuracy in classifying negative sentiments which was dropped while classifying positive sentiments. 
 	As a future work, we have identified multiple works that can be carried out. Firstly, fine-grained level methods can be adopted to identify whether there is a polarity towards search term or not. Secondly, WSD methods can be implemented to increase the correctness of SentiWordNet analysis since WSD handles identification of word context problem. Thirdly, sarcasm detection can be applied as addressed in experiments and results section to improve the accuracy of results. Lastly, machine learning methods may be applied to understand the accuracy of them with respect to lexicon-based methods.
 
 
@@ -104,9 +118,7 @@ system result ---> negative (-2.00, -0.22)
 [5555] Colhon, M, Badica, C, & Sendre, A (2014). Relating the Opinion Holder and the Review Accuracy in Sentiment Analysis of Tourist
 Reviews. In Knowledge Science, Engineering and Management (pp.246-257). Springer International Publishing.
 
-[->1**1<-] Marrese-Taylor, E., Velasquez, J. D., & Bravo-Marquez, F. (2013).
-Opinion Zoom: A Modular Tool to Explore Tourism Opinions on the
-Web (pp. 261–264). IEEE. doi:10.1109/WI-IAT.2013.193
+[->1**1<-] Marrese-Taylor, E., Velasquez, J. D., & Bravo-Marquez, F. (2013). Opinion Zoom: A Modular Tool to Explore Tourism Opinions on the Web (pp. 261–264). IEEE. doi:10.1109/WI-IAT.2013.193
 
 [12**] Shimada, K., Inoue, S., & Endo, T (2012, September). On-site likelihood identification of tweets for tourism infonnation analysis. In
 Advanced Applied lnfonnatics (11A1AA1), 2012 IIAl International Conference on (pp. 117-122). IEEE.  
@@ -121,3 +133,6 @@ recognition, 2000.
 [->3<-] R. Xia, F. Xu, C. Zong, Q. Li, Y. Qi, and T. Li, “Dual Sentiment Analysis: Considering Two Sides of One Review,” IEEE Transactions on Knowledge and Data Engineering, vol. 27, Issue 8, pp. 2120-2133, August 2015.
 
 [->5<-] Nitin Jindal and Bing Liu “Mining Comparative Sentences and Relations” (2006), AAAI'06 proceedings of the 21st national conference on Artificial intelligence - Volume 2, pp.1331-1336.
+
+[11ta]. Duric Adnan, Song Fei., “Feature selection for sentiment analysis based
+on content and syntax models”, Decis Support Syst,53:704–11, 2012

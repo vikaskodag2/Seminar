@@ -4,7 +4,7 @@ import pickle
 import nltk.corpus, nltk.tag, itertools  
 from terminal_colors import Tcolors
 
-DEBUG1 = False
+DEBUG1 = True
 
 class SequentialTagger:
     """
